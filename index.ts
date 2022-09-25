@@ -1,13 +1,20 @@
 import { Message } from 'discord.js';
+import { myCache } from './src/services/CacheService';
 
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Client, GatewayIntentBits, Options, LimitedCollection, Collection } = require('discord.js');
 const { token, prefix } = require('./config.json');
 const fs = require('fs');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+const client = new Client({ 
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates],
+    makeCache: manager => {
+		if (manager.name === 'MessageManager') return new LimitedCollection({ maxSize: 0 });
+		return new Collection();
+	},
+});
 
 
-const commands = fs.readdirSync('./commands').map(x => x.replace('.ts', ''));
+const commands = fs.readdirSync('./src/commands').map(x => x.replace('.ts', ''));
 
 
 client.once('ready', (bot) => {
@@ -29,7 +36,7 @@ client.on('messageCreate', async (message: Message) => {
         return;
     }
 
-    const execute = require(`./commands/${cmd}.ts`);
+    const execute = require(`./src/commands/${cmd}.ts`);
     execute(client, message);
 });
 
