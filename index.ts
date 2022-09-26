@@ -1,8 +1,9 @@
 import { Message } from 'discord.js';
 import { myCache } from './src/services/CacheService';
 
+require('dotenv').config()
 const { Client, GatewayIntentBits, Options, LimitedCollection, Collection } = require('discord.js');
-const { token, prefix } = require('./config.json');
+const { prefix } = require('./config.json');
 const fs = require('fs');
 
 const client = new Client({ 
@@ -40,4 +41,5 @@ client.on('messageCreate', async (message: Message) => {
     execute(client, message);
 });
 
+const token = process.env.TOKEN;
 client.login(token);
