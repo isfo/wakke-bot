@@ -4,7 +4,7 @@
     "main": "index.ts",
     "license": "MIT",
     "scripts": {
-        "dev": "nodemon -r dotenv/config ./index.ts",
+        "dev": "nodemon ./index.ts",
         "tsc": "tsc -p .",
         "ts-node": "ts-node --transpile-only ./index.ts",
         "start": "npm run tsc && npm run ts-node",
