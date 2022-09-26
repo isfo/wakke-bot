@@ -24,7 +24,7 @@ client.once('ready', (bot) => {
 
 client.on('messageCreate', async (message: Message) => {
     const content = message.content.split(/\s+/g);
-    let command = content.shift();
+    let command = content.shift() as string;
 
     if (!command.startsWith(prefix)) {
         return;

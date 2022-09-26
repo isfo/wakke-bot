@@ -1,11 +1,13 @@
 {
     "name": "bot-wakke",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "index.ts",
     "license": "MIT",
     "scripts": {
         "dev": "nodemon -r dotenv/config ./index.ts",
-        "start": "ts-node index.ts"
+        "start": "nodemon ./index.ts",
+        "build": "tsc -p .",
+        "start-old": "ts-node ./index.ts"
     },
     "devDependencies": {
         "@types/node": "^18.7.14",
