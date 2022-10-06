@@ -1,15 +1,10 @@
 {
     "name": "bot-wakke",
     "version": "1.0.0",
-    "main": "index.ts",
+    "main": "build/index.js",
     "license": "MIT",
     "scripts": {
-        "dev": "nodemon ./index.ts",
-        "tsc": "tsc -p .",
-        "ts-node": "ts-node --transpile-only ./index.ts",
-        "start": "npm run tsc && npm run ts-node",
-        "build": "tsc -p .",
-        "start-old": "ts-node ./index.ts"
+        
     },
     "devDependencies": {
         "@types/node": "^18.7.14",
